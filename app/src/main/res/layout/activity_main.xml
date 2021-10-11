@@ -8,10 +8,12 @@
     android:orientation="vertical">
 
     <RadioGroup
+        android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:checkedButton="@+id/times_new_roman">
 
         <RadioButton
             android:id="@+id/times_new_roman"
@@ -33,9 +35,8 @@
     </RadioGroup>
 
     <EditText
-
         android:id="@+id/text_to_edit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:autofillHints="Text that is being converted to font"
@@ -65,6 +66,7 @@
 
     <TextView
         android:id="@+id/converted_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
