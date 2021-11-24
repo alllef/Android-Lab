@@ -16,14 +16,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var cancelButton: Button
     lateinit var editText: EditText
     lateinit var textView: TextView
-    lateinit var radioGroupManager: RadioGroupManager
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        radioGroupManager = RadioGroupManager(findViewById(R.id.group))
         okButton = findViewById(R.id.ok)
         cancelButton = findViewById(R.id.cancel)
         editText = findViewById(R.id.text_to_edit)
@@ -44,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onOkButtonClicked() {
-        val radioButtonId: Int = radioGroupManager.getCheckedRadioButton()
+        /*val radioButtonId: Int = radioGroupManager.getCheckedRadioButton()
         val radioButton: RadioButton = findViewById(radioButtonId) as RadioButton
         val fontId = when (radioButton.text) {
             "times_new_roman" -> R.font.toms_new_roman_eawr
@@ -53,6 +51,6 @@ class MainActivity : AppCompatActivity() {
             else -> println("what is it")
         }
         textView.typeface = resources.getFont(fontId as Int)
-        textView.text=editText.text
-    }
+        textView.text = editText.text
+    */}
 }

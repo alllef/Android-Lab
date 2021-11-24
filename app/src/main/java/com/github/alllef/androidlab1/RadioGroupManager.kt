@@ -6,8 +6,8 @@ import android.widget.RadioGroup
 
 class RadioGroupManager(val radioGroup: RadioGroup) {
 
-    public fun getFontName(): String {
-        val button: RadioButton = radioGroup.focusedChild as RadioButton
-        return button.text.toString()
+    public fun getCheckedRadioButton(): Int {
+        val buttonId: Int = radioGroup.checkedRadioButtonId
+        return buttonId
     }
 }
