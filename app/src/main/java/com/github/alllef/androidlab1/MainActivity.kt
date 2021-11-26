@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     // private lateinit var binding: ResultProfileBinding
     lateinit var radioGroup: RadioGroup
     lateinit var okButton: Button
+
     lateinit var editText: EditText
     lateinit var radioGroupManager: RadioGroupManager
 
@@ -19,12 +20,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val editTextFragment: Fragment = EditTextFragment()
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, EditTextFragment())
+            .add(R.id.fragment_container_view, editTextFragment)
             .commit()
 
         okButton = findViewById(R.id.ok)
-        editText = findViewById(R.id.text_to_edit)
+        editText = editTextFragment.requireView().findViewById(R.id.text_to_edit)
         radioGroupManager = RadioGroupManager(findViewById(R.id.group))
 
         okButton.setOnClickListener {
@@ -42,23 +45,27 @@ class MainActivity : AppCompatActivity() {
             "comic_sans" -> R.font.sans_comic_sans_regular
             else -> println("what is it")
         }
+        addTextViewFragment(fontId as Int)
+    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun addTextViewFragment(fontId: Int) {
         val textViewFragment: Fragment = TextViewFragment()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, textViewFragment)
             .commit()
 
-        val cancelButton: Button = findViewById(R.id.cancel)
+        val cancelButton: Button? = textViewFragment.view?.findViewById(R.id.cancel)
 
-        cancelButton.setOnClickListener {
+        cancelButton?.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .remove(EditTextFragment())
                 .commit()
         }
 
-        val textView: TextView = findViewById(R.id.converted_text)
-        textView.typeface = resources.getFont(fontId as Int)
-        textView.text = editText.text
+        val textView: TextView? = textViewFragment.view?.findViewById(R.id.converted_text)
+        textView?.typeface = resources.getFont(fontId as Int)
+        textView?.text = editText.text
     }
 }
