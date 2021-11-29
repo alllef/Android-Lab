@@ -31,7 +31,7 @@ class TextViewFragment : Fragment() {
     public fun addText(fontId: Int, text: Editable?) {
 
         val textView: TextView? = view?.findViewById(R.id.converted_text)
-        textView?.typeface = resources.getFont(fontId as Int)
+        textView?.typeface = resources.getFont(fontId)
         textView?.text = text
     }
 }

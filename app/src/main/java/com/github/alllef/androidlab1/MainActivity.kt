@@ -13,14 +13,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var radioGroup: RadioGroup
     lateinit var okButton: Button
     lateinit var radioGroupManager: RadioGroupManager
+    lateinit var ediTextFragment: EditTextFragment
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ediTextFragment = EditTextFragment()
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, EditTextFragment())
+            .add(R.id.fragment_container_view, ediTextFragment, "edit_fragment")
             .commit()
 
         okButton = findViewById(R.id.ok)
@@ -42,15 +44,13 @@ class MainActivity : AppCompatActivity() {
             else -> println("what is it")
         }
 
+        val textViewFragment: TextViewFragment = TextViewFragment()
+
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, TextViewFragment())
+            .add(R.id.fragment_container_view, textViewFragment, "text_fragment")
             .commit()
 
-       /* val textViewFragment: TextViewFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_container_view) as TextViewFragment
-
-        val editTextViewFragment : EditTextFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as EditTextFragment
-        textViewFragment.addText(fontId as Int,editTextViewFragment.getEditedText())*/
+        textViewFragment.addText(fontId as Int, ediTextFragment.getEditedText())
     }
 
 }
