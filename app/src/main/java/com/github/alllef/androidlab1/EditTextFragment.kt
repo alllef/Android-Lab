@@ -16,9 +16,4 @@ class EditTextFragment : Fragment(R.layout.fragment_edit_text) {
     ): View? {
         return inflater.inflate(R.layout.fragment_edit_text, container, false)
     }
-
-    fun getEditedText(): Editable? {
-        val editText: EditText? = view?.findViewById(R.id.text_to_edit)
-        return editText?.text
-    }
 }

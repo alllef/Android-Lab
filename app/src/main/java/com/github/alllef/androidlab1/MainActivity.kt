@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         ediTextFragment = EditTextFragment()
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, ediTextFragment, "edit_fragment")
+            .add(R.id.fragment_edit_container_view, ediTextFragment, "edit_fragment")
             .commit()
 
         okButton = findViewById(R.id.ok)
@@ -35,6 +35,14 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onOkButtonClicked() {
+
+        val textViewFragment: TextViewFragment = TextViewFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_view_container_view, textViewFragment, "text_fragment")
+            .commit()
+    }
+
+    public fun getFontId(): Int {
         val radioButtonId: Int = radioGroupManager.getCheckedRadioButton()
         val radioButton: RadioButton = findViewById(radioButtonId) as RadioButton
         val fontId = when (radioButton.text) {
@@ -44,13 +52,6 @@ class MainActivity : AppCompatActivity() {
             else -> println("what is it")
         }
 
-        val textViewFragment: TextViewFragment = TextViewFragment()
-
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, textViewFragment, "text_fragment")
-            .commit()
-
-        textViewFragment.addText(fontId as Int, ediTextFragment.getEditedText())
+        return fontId as Int
     }
-
 }

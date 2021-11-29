@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 
@@ -16,15 +17,27 @@ class TextViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val cancelButton: Button? = view?.findViewById(R.id.cancel)
+
+
+        return inflater.inflate(R.layout.fragment_text_view, container, false)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val cancelButton: Button? = view.findViewById(R.id.cancel)
 
         cancelButton?.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .remove(this)
                 .commit()
         }
+            val mainActivity: MainActivity = activity as MainActivity
+            val editTextFragment =
+                parentFragmentManager.findFragmentById(R.id.fragment_edit_container_view) as EditTextFragment
 
-        return inflater.inflate(R.layout.fragment_text_view, container, false)
+            val textToEdit: EditText? = editTextFragment.view?.findViewById(R.id.text_to_edit)
+            addText(mainActivity.getFontId(), textToEdit?.text)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
