@@ -5,6 +5,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragment.EditTextFragment">
+    <RadioGroup
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:checkedButton="@+id/times_new_roman"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/times_new_roman"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/times_new_roman" />
+
+        <RadioButton
+            android:id="@+id/arial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/arial" />
+
+        <RadioButton
+            android:id="@+id/comic_sans"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/comic_sans" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ok"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/text_to_edit"
