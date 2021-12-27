@@ -1,4 +1,4 @@
-package com.github.alllef.androidlab1
+package com.github.alllef.androidlab1.fragment
 
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.github.alllef.androidlab1.MainActivity
+import com.github.alllef.androidlab1.R
 
 class TextViewFragment : Fragment() {
     override fun onCreateView(

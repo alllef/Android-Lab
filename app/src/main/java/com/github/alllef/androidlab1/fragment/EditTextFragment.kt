@@ -1,12 +1,11 @@
-package com.github.alllef.androidlab1
+package com.github.alllef.androidlab1.fragment
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.fragment.app.Fragment
+import com.github.alllef.androidlab1.R
 
 class EditTextFragment : Fragment(R.layout.fragment_edit_text) {
 

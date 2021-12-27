@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
+import com.github.alllef.androidlab1.fragment.EditTextFragment
+import com.github.alllef.androidlab1.fragment.TextViewFragment
 
 class MainActivity : AppCompatActivity() {
 
