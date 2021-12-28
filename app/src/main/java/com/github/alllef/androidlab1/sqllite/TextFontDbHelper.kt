@@ -16,13 +16,6 @@ class TextFontDbHelper(context: Context) :
         onCreate(db)
     }
 
-    /*val values = ContentValues().apply {
-                    put(TextFontContract.Record.COLUMN_FONT, "hi")
-                    put(TextFontContract.Record.COLUMN_TEXT_TITLE, "does it work")
-                }
-                val result = database.insert(TextFontContract.Record.TABLE_NAME, null, values)*/
-    // database = TextFontDbHelper(this).writableDatabase
-
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "TextFont.db"
@@ -30,7 +23,7 @@ class TextFontDbHelper(context: Context) :
         private const val SQL_CREATE_RECORD =
             """CREATE TABLE ${TextFontContract.Record.TABLE_NAME} (
                 ${BaseColumns._ID} INTEGER PRIMARY KEY,
-                ${TextFontContract.Record.COLUMN_TEXT_TITLE} TEXT,
+                ${TextFontContract.Record.COLUMN_TEXT} TEXT,
                 ${TextFontContract.Record.COLUMN_FONT} TEXT)"""
 
         private const val SQL_DELETE_RECORD =

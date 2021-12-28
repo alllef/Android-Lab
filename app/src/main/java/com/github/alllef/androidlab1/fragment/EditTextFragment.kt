@@ -32,7 +32,7 @@ class EditTextFragment : Fragment(R.layout.fragment_edit_text) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         okButton = view.findViewById(R.id.ok)
         radioGroupManager = RadioGroupManager(view.findViewById(R.id.group))
-        okButton.setOnClickListener { okButtonFragmentListener.onOkButtonClicked()}
+        okButton.setOnClickListener { okButtonFragmentListener.onOkButtonClicked() }
     }
 
     override fun onAttach(activity: Activity) {
@@ -40,11 +40,14 @@ class EditTextFragment : Fragment(R.layout.fragment_edit_text) {
         okButtonFragmentListener = activity as OkButtonFragmentListener
     }
 
-
-    public fun getFontId(): Int {
+    public fun getFontName(): String {
         val radioButtonId: Int = radioGroupManager.getCheckedRadioButton()
         val radioButton: RadioButton = view?.findViewById(radioButtonId) as RadioButton
-        val fontId = when (radioButton.text) {
+        return radioButton.text.toString()
+    }
+
+    public fun getFontId(): Int {
+        val fontId = when (getFontName()) {
             "times_new_roman" -> R.font.toms_new_roman_eawr
             "arial" -> R.font.arial_narrow
             "comic_sans" -> R.font.sans_comic_sans_regular

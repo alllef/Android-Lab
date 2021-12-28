@@ -1,18 +1,14 @@
 package com.github.alllef.androidlab1.fragment
 
-import android.app.Activity
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.github.alllef.androidlab1.MainActivity
 import com.github.alllef.androidlab1.R
 
 class TextViewFragment(val fontId: Int, val text: String) : Fragment() {
