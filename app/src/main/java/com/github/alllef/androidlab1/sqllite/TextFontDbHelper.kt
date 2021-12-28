@@ -8,11 +8,11 @@ import android.provider.BaseColumns
 class TextFontDbHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(SQL_DELETE_RECORD)
         db.execSQL(SQL_CREATE_RECORD)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL(SQL_DELETE_RECORD)
         onCreate(db)
     }
 
@@ -20,13 +20,13 @@ class TextFontDbHelper(context: Context) :
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "TextFont.db"
 
-        private const val SQL_CREATE_RECORD =
+        public const val SQL_CREATE_RECORD =
             """CREATE TABLE ${TextFontContract.Record.TABLE_NAME} (
                 ${BaseColumns._ID} INTEGER PRIMARY KEY,
                 ${TextFontContract.Record.COLUMN_TEXT} TEXT,
                 ${TextFontContract.Record.COLUMN_FONT} TEXT)"""
 
-        private const val SQL_DELETE_RECORD =
+        public const val SQL_DELETE_RECORD =
             "DROP TABLE IF EXISTS ${TextFontContract.Record.TABLE_NAME}"
     }
 

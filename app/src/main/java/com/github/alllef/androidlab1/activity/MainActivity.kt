@@ -1,6 +1,7 @@
 package com.github.alllef.androidlab1.activity
 
 import android.content.ContentValues
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -15,14 +16,17 @@ import com.github.alllef.androidlab1.sqllite.TextFontDbHelper
 
 class MainActivity : AppCompatActivity(), EditTextFragment.OkButtonFragmentListener {
     lateinit var ediTextFragment: EditTextFragment
+    lateinit var openButton: Button
     lateinit var database: SQLiteDatabase
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         database = TextFontDbHelper(this).writableDatabase
+        database.execSQL(TextFontDbHelper.SQL_DELETE_RECORD)
+        database.execSQL(TextFontDbHelper.SQL_CREATE_RECORD)
+
         ediTextFragment = EditTextFragment()
 
         supportFragmentManager.beginTransaction()
@@ -30,6 +34,12 @@ class MainActivity : AppCompatActivity(), EditTextFragment.OkButtonFragmentListe
             .commit()
 
         val okButton: Button? = ediTextFragment.view?.findViewById(R.id.ok)
+        val openButton: Button? = findViewById(R.id.open)
+
+        openButton?.setOnClickListener {
+            onOpenButtonClicked()
+        }
+
         okButton?.setOnClickListener {
             onOkButtonClicked()
         }
@@ -41,12 +51,24 @@ class MainActivity : AppCompatActivity(), EditTextFragment.OkButtonFragmentListe
         insertValue()
     }
 
+    private fun onOpenButtonClicked() {
+        val intent = Intent(this, DbActivity::class.java)
+        startActivity(intent)
+    }
+
     fun insertValue() {
         val values = ContentValues().apply {
             put(TextFontContract.Record.COLUMN_FONT, ediTextFragment.getFontName())
             put(TextFontContract.Record.COLUMN_TEXT, ediTextFragment.getText().toString())
         }
-        val result = database.insert(TextFontContract.Record.TABLE_NAME, null, values)
+        val toast = Toast.makeText(this, "Nothing was saved. Value is empty", Toast.LENGTH_SHORT)
+
+        if (!ediTextFragment.getText().toString().isEmpty()) {
+            toast.setText("Saved successfully")
+            val result = database.insert(TextFontContract.Record.TABLE_NAME, null, values)
+        }
+
+        toast.show()
     }
 
     fun createTextViewFragment() {
