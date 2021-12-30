@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity(), EditTextFragment.OkButtonFragmentListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         database = TextFontDbHelper(this).writableDatabase
-        database.execSQL(TextFontDbHelper.SQL_DELETE_RECORD)
-        database.execSQL(TextFontDbHelper.SQL_CREATE_RECORD)
 
         ediTextFragment = EditTextFragment()
 
@@ -66,6 +64,7 @@ class MainActivity : AppCompatActivity(), EditTextFragment.OkButtonFragmentListe
         if (!ediTextFragment.getText().toString().isEmpty()) {
             toast.setText("Saved successfully")
             val result = database.insert(TextFontContract.Record.TABLE_NAME, null, values)
+        print("Result is "+result)
         }
 
         toast.show()

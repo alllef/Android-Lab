@@ -10,6 +10,7 @@ class TextFontDbHelper(context: Context) :
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_DELETE_RECORD)
         db.execSQL(SQL_CREATE_RECORD)
+        println("gchi")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

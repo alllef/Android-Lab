@@ -18,11 +18,7 @@ class DbActivity : AppCompatActivity() {
 
         db = TextFontDbHelper(this).readableDatabase
         textView = findViewById(R.id.db_content)
-        getData()
-    }
-
-    override fun onResume() {
-        super.onResume()
+        println("Does not make sense")
         getData()
     }
 
@@ -38,11 +34,12 @@ class DbActivity : AppCompatActivity() {
             null
         )
 
+        println(cursor.count)
         with(cursor) {
             while (moveToNext()) {
                 val font = getString(getColumnIndexOrThrow(TextFontContract.Record.COLUMN_FONT))
                 val title = getString(getColumnIndexOrThrow(TextFontContract.Record.COLUMN_TEXT))
-                starterText = starterText + font + " " + title+ "\n"
+                starterText = starterText + font + " " + title + "\n"
             }
         }
         if (starterText.isEmpty())
